@@ -34,18 +34,6 @@ namespace ImageFilters
 
         private void btnZGraph_Click(object sender, EventArgs e)
         {
-            // Make up some data points from the N, N log(N) functions
-            //int N = 40;
-            //double[] x_values = new double[N];
-            //double[] y_values_N = new double[N];
-            //double[] y_values_NLogN = new double[N];
-
-            //for (int i = 0; i < N; i++)
-            //{
-            //    x_values[i] = i;
-            //    y_values_N[i] = i;
-            //    y_values_NLogN[i] = i * Math.Log(i);
-            //}
             double[] x_values = new double[N/2];
             double[] y_values_Count = new double[N/2];
             double[] y_values_Quick = new double[N/2];
@@ -64,8 +52,6 @@ namespace ImageFilters
                 int Time_After = System.Environment.TickCount;
                 y_values_Count[index] = Time_After - Time_Befor;
                 index++;
-                Time_Befor = 0;
-                Time_After = 0;
             }
             index = 0;
             for (int i = 3; i <= N; i += 2)
@@ -75,8 +61,6 @@ namespace ImageFilters
                 int Time_After = System.Environment.TickCount;
                 y_values_Quick[index] = Time_After - Time_Befor;
                 index++;
-                Time_Befor = 0;
-                Time_After = 0;
             }
             //Create a graph and add two curves to it
             ZGraphForm ZGF = new ZGraphForm("Sample Graph", "N", "f(N)");
