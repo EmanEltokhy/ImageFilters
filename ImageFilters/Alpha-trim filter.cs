@@ -10,41 +10,41 @@ namespace ImageFilters
     {
         public byte[,] NewImage(byte[,] ImageMatrix, int T, int N)
         {
-            byte[,] Matrix =  ImageMatrix;
-            byte[,] newMatrix = new byte[Matrix.GetLength(0),Matrix.GetLength(1)];
+            byte[,] Matrix =  ImageMatrix;  //O(1)
+            byte[,] newMatrix = new byte[Matrix.GetLength(0),Matrix.GetLength(1)];  //O(1)
 
-            int[] array = { };
-            for (int i = 0; i < Matrix.GetLength(0); i++)
+            int[] array = { };   //O(1)
+            for (int i = 0; i < Matrix.GetLength(0); i++)   //no. of iter * order of body = O(1) * O(N^2) = O(N^2)
             {
-                for (int j = 0; j < Matrix.GetLength(1); j++)
+                for (int j = 0; j < Matrix.GetLength(1); j++)  //no. of iter * order of body =  O(1) * O(N^2) = O(N^2)
                 {
-                    array = Neighbours(Matrix, N, i, j);  
-                    array = countSort(array, N);
+                    array = Neighbours(Matrix, N, i, j);  //O(N^2)
+                    array = countSort(array, N);          //O(N)
 
-                    if (array.Length - T * 2 <= 0)
+                    if (array.Length - T * 2 <= 0)      //O(1)
                     {
-                        newMatrix[i,j] = Matrix[i, j];
+                        newMatrix[i,j] = Matrix[i, j]; //O(1)
                         continue;
                     }
                     else
                     {
-                        int index = 0;
-                        int[] w = new int[array.Length - T * 2];
-                        for (int l = T; l < array.Length - T; l++)
+                        int index = 0;          //O(1)
+                        int[] w = new int[array.Length - T * 2];    //O(1)
+                        for (int l = T; l < array.Length - T; l++)  //no. of iter * order of body = O(1) * O(N) = O(N)
                         {
-                            w[index] = array[l];
-                            index++;
+                            w[index] = array[l];    //O(1)
+                            index++;                //O(1)
                         }
-                        int sum = 0;
-                        for (int q = 0; q < w.Length; q++)
+                        int sum = 0;            //O(1)
+                        for (int q = 0; q < w.Length; q++)    //no. of iter * order of body =  O(1) * O(N) = O(N)
                         {
-                            sum += w[q];
+                            sum += w[q];        //O(1)
                         }
-                        newMatrix[i, j] = (byte)(sum / w.Length);
+                        newMatrix[i, j] = (byte)(sum / w.Length);       //O(1)
                     }
                 }
             }
-            return newMatrix;
+            return newMatrix; //O(1) ..
         }
         public int[] Neighbours(byte[,] ImageMatrix, int N, int i, int j)
         {
@@ -81,12 +81,12 @@ namespace ImageFilters
                 }
 
             }
-            int q = index;
-            int[] x = new int[index];
-            for (int d = 0; d < q; d++)
-                x[d] = array[d];
-            array = x;
-            return array;
+            int q = index;  //O(1)
+            int[] x = new int[index];  //O(1)
+            for (int d = 0; d < q; d++) //no.of iter *order of body = q * O(1) = O(q)
+              x[d] = array[d]; //O(1)
+            array = x;//O(1)
+            return array; //O(1) ..
         }
 
         public int[] countSort(int[] array, int N)  //O(size + max)
