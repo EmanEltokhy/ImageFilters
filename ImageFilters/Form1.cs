@@ -116,7 +116,7 @@ namespace ImageFilters
                 {
                     int T = Int16.Parse(TB_T.Text);
                     Alpha_trim_filter a = new Alpha_trim_filter();
-                    byte[,] newMatrix = a.NewImage(ImageMatrix, T, N);
+                    byte[,] newMatrix = a.NewImage(ImageMatrix, T, N,CB_Sort.SelectedIndex);
                     ImageOperations.DisplayImage(newMatrix, pictureBox2);
                 }
                 else if (Filter_Type == "Adaptive median filter")
