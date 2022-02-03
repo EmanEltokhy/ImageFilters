@@ -112,6 +112,7 @@ namespace ImageFilters
             N = Int16.Parse(TB_N.Text);
             if (N % 2 != 0)
             {
+                //f
                 if (Filter_Type == "Alpha-trim filter")
                 {
                     int T = Int16.Parse(TB_T.Text);
